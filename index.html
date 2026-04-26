@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>أطلس الخرائط - جاري التحويل</title>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: #f4f4f9; }
+        .container { text-align: center; padding: 20px; border-radius: 10px; background: white; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="status">جاري محاولة فتح تطبيق أطلس الخرائط...</div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const data = urlParams.get('d');
+        
+        if (data) {
+            const appUrl = "theatlas://share?d=" + data;
+            const downloadUrl = "https://www.theatlas.com/download"; 
+
+            // محاولة الفتح الفوري
+            window.location.href = appUrl;
+
+            // إذا لم يفتح التطبيق خلال ٣ ثواني، حوله للتحميل
+            setTimeout(function() {
+                if (!document.hidden) {
+                    document.getElementById('status').innerHTML = "يبدو أن التطبيق غير مثبت.<br><br>جاري تحويلك لصفحة التحميل...";
+                    window.location.href = downloadUrl;
+                }
+            }, 3000);
+        } else {
+            document.getElementById('status').innerHTML = "رابط غير صالح أو بيانات مفقودة.";
+        }
+    </script>
+</body>
+</html>
