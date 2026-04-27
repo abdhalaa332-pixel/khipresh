@@ -19,18 +19,18 @@
         
         if (data) {
             const appUrl = "theatlas://share?d=" + data;
-            const downloadUrl = "https://www.theatlas.com/download"; 
+            // const downloadUrl = "https://www.theatlas.com/download"; 
 
             // محاولة الفتح الفوري
             window.location.href = appUrl;
 
             // إذا لم يفتح التطبيق خلال ٣ ثواني، حوله للتحميل
-            setTimeout(function() {
-                if (!document.hidden) {
-                    document.getElementById('status').innerHTML = "يبدو أن التطبيق غير مثبت.<br><br>جاري تحويلك لصفحة التحميل...";
-                    window.location.href = downloadUrl;
-                }
-            }, 3000);
+            // setTimeout(function() {
+            //     if (!document.hidden) {
+            //         document.getElementById('status').innerHTML = "يبدو أن التطبيق غير مثبت.<br><br>جاري تحويلك لصفحة التحميل...";
+            //         window.location.href = downloadUrl;
+            //     }
+            // }, 3000);
         } else {
             document.getElementById('status').innerHTML = "رابط غير صالح أو بيانات مفقودة.";
         }
