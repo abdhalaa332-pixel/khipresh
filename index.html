@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>أطلس الخرائط 3..</title>
+    <title>أطلس الخرائط 4..</title>
     <meta charset="UTF-8">
     <style>
         body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: #f4f4f9; }
@@ -43,12 +43,15 @@
             document.addEventListener("visibilitychange", () => {
                 if (document.hidden) {
                     // المستخدم وافق والتطبيق بدأ يفتح
-                    setTimeout(closeWindow, 1000);
+                    // setTimeout(closeWindow, 1000);
+                    closeWindow();
                 }
             });
             // محاولة الفتح الفوري
             window.location.href = appUrl;
 
+            document.close();
+            
            // خدعة 3: لو المستخدم ضغط في أي مكان في الصفحة (Interaction)
             // المتصفح بيدينا صلاحية القفل لو فيه User Gesture
             document.body.onclick = () => {
