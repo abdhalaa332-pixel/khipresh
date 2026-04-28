@@ -32,14 +32,14 @@
             //     }
             // }, 3000);
             // نراقب حالة الصفحة
-            setTimeout(function() {
+            // setTimeout(function() {
                 // محاولة إغلاق النافذة
                 window.open('', '_self', ''); // خدعة لبعض المتصفحات للسماح بالقفل
                 window.close();
 
                 // لو لسه الصفحة مفتوحة، نغير المحتوى لشكل جمالي
                 document.getElementById('status').innerHTML = "🚀 تم فتح الأطلس.. يمكنك إغلاق هذه الصفحة الآن.";
-            }, 1500);
+            // }, 1500);
         } else {
             document.getElementById('status').innerHTML = "رابط غير صالح أو بيانات مفقودة.";
         }
