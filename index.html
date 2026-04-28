@@ -21,7 +21,8 @@
             const appUrl = "khipresh://share?d=" + data;
             // const downloadUrl = "https://www.theatlas.com/download"; 
 
-            if (document.hidden) {
+            const onVisibilityChange = () => {
+                if (document.hidden) {
                     console.log("🚀 التطبيق بدأ يفتح أو رسالة التأكيد ظهرت..");
                     
                     // استنى ثانية عشان نضمن إن الويندوز استلم الأمر بالكامل
@@ -33,11 +34,20 @@
                         document.getElementById('status').innerHTML = "✅ تم توجيهك للأطلس. يمكنك إغلاق الصفحة.";
                     }, 1000);
                 }
-            
+            };
+
+            // إضافة المستمع
+            document.addEventListener("visibilitychange", onVisibilityChange);
             // محاولة الفتح الفوري
             window.location.href = appUrl;
 
-           
+           // أمان إضافي: لو المستخدم فضل في الصفحة ثانيتين ومحصلش تغيير، 
+            // معناها التطبيق مش عنده أو رفض الفتح
+            setTimeout(() => {
+                if (!document.hidden) {
+                    document.getElementById('status').innerHTML = "⚠️ يبدو أن التطبيق غير مثبت، أو لم يتم إعطاء الإذن.";
+                }
+            }, 2000);
             
             // إذا لم يفتح التطبيق خلال ٣ ثواني، حوله للتحميل
             // setTimeout(function() {
