@@ -24,7 +24,8 @@
             // محاولة الفتح الفوري
             window.location.href = appUrl;
 
-            if (!document.hidden) {
+            if (document.hidden) {
+                window.open('', '_self', ''); // خدعة للسماح بالقفل
                window.close();
             }
             
