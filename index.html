@@ -21,10 +21,7 @@
             const appUrl = "khipresh://share?d=" + data;
             // const downloadUrl = "https://www.theatlas.com/download"; 
 
-            // محاولة الفتح الفوري
-            window.location.href = appUrl;
-
-           if (document.hidden) {
+            if (document.hidden) {
                     console.log("🚀 التطبيق بدأ يفتح أو رسالة التأكيد ظهرت..");
                     
                     // استنى ثانية عشان نضمن إن الويندوز استلم الأمر بالكامل
@@ -36,6 +33,11 @@
                         document.getElementById('status').innerHTML = "✅ تم توجيهك للأطلس. يمكنك إغلاق الصفحة.";
                     }, 1000);
                 }
+            
+            // محاولة الفتح الفوري
+            window.location.href = appUrl;
+
+           
             
             // إذا لم يفتح التطبيق خلال ٣ ثواني، حوله للتحميل
             // setTimeout(function() {
