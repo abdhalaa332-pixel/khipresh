@@ -21,29 +21,11 @@
             const appUrl = "khipresh://share?d=" + data;
             // const downloadUrl = "https://www.theatlas.com/download"; 
 
-            // مستمع لتغير حالة الصفحة (هل المتصفح لسه هو اللي قدام المستخدم؟)
-            const onVisibilityChange = () => {
-                if (document.hidden) {
-                    console.log("🚀 التطبيق بدأ يفتح أو رسالة التأكيد ظهرت..");
-                    
-                    // استنى ثانية عشان نضمن إن الويندوز استلم الأمر بالكامل
-                    setTimeout(() => {
-                        window.open('', '_self', ''); // خدعة للسماح بالقفل
-                        window.close();
-                        
-                        // رسالة احتياطية لو المتصفح رفض القفل التلقائي
-                        document.getElementById('status').innerHTML = "✅ تم توجيهك للأطلس. يمكنك إغلاق الصفحة.";
-                    }, 1000);
-                }
-            };
-            // إضافة المستمع
-            document.addEventListener("visibilitychange", onVisibilityChange);
-
             // محاولة الفتح الفوري
             window.location.href = appUrl;
 
-            if (!document.hidden) {
-               document.getElementById('status').innerHTML = "⚠️ يبدو أن التطبيق غير مثبت، أو لم يتم إعطاء الإذن.";
+            if (document.hidden) {
+               window.close();
             }
             
             // إذا لم يفتح التطبيق خلال ٣ ثواني، حوله للتحميل
