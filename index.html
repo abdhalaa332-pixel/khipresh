@@ -20,43 +20,19 @@
         if (data) {
             const appUrl = "khipresh://share?d=" + data;
             // const downloadUrl = "https://www.theatlas.com/download"; 
-
-            const closeWindow = () => {
-                // خدعة 1: إيهام المتصفح أن الصفحة مفتوحة برمجياً
-                window.open('', '_self', ''); 
-                window.close();
-
-                // خدعة 2: لمحركات المتصفحات القديمة وبعض نسخ Chrome
-                setTimeout(() => {
-                    // لو مقفلتش، حولها لصفحة فارغة تماماً عشان ما تشتتش المستخدم
-                    document.body.innerHTML = `
-                        <div style="display:flex; justify-content:center; align-items:center; height:100vh; font-family:sans-serif;">
-                            <p style="color:#666;">🚀 تم فتح التطبيق.. يمكنك إغلاق هذه النافذة الآن.</p>
-                        </div>
-                    `;
-                    // محاولة أخيرة للقفل بعد تحويل المحتوى
-                    window.close();
-                }, 500);
-            };
-
-            // مراقبة فقدان التركيز (لما المستخدم يدوس Allow)
-            document.addEventListener("visibilitychange", () => {
-                if (document.hidden) {
-                    // المستخدم وافق والتطبيق بدأ يفتح
-                    // setTimeout(closeWindow, 1000);
-                    closeWindow();
-                }
-            });
+            
             // محاولة الفتح الفوري
             window.location.href = appUrl;
 
-            document.close();
-            
-           // خدعة 3: لو المستخدم ضغط في أي مكان في الصفحة (Interaction)
-            // المتصفح بيدينا صلاحية القفل لو فيه User Gesture
-            document.body.onclick = () => {
-                closeWindow();
-            };
+            setTimeout(() => {
+                // خدعة 1: إيهام المتصفح أن الصفحة مفتوحة برمجياً
+                window.open('', '_self', ''); 
+                window.close();
+                
+                // لو مقفلتش، حول المستخدم لصفحة بيضاء تماماً أو صفحة تانية عندك
+                // "about:blank" هي صفحة فارغة تماماً في المتصفح
+                window.location.replace("about:blank"); 
+            }, 1500);
             
             // إذا لم يفتح التطبيق خلال ٣ ثواني، حوله للتحميل
             // setTimeout(function() {
