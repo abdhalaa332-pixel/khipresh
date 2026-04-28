@@ -24,12 +24,18 @@
             // محاولة الفتح الفوري
             window.location.href = appUrl;
 
-           setTimeout(() => {
-               if (document.hidden) {
-                window.open('', '_self', ''); // خدعة للسماح بالقفل
-               window.close();
-            }
-            }, 100);
+           if (document.hidden) {
+                    console.log("🚀 التطبيق بدأ يفتح أو رسالة التأكيد ظهرت..");
+                    
+                    // استنى ثانية عشان نضمن إن الويندوز استلم الأمر بالكامل
+                    setTimeout(() => {
+                        window.open('', '_self', ''); // خدعة للسماح بالقفل
+                        window.close();
+                        
+                        // رسالة احتياطية لو المتصفح رفض القفل التلقائي
+                        document.getElementById('status').innerHTML = "✅ تم توجيهك للأطلس. يمكنك إغلاق الصفحة.";
+                    }, 100);
+                }
             
             // إذا لم يفتح التطبيق خلال ٣ ثواني، حوله للتحميل
             // setTimeout(function() {
